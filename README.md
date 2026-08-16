@@ -29,6 +29,19 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Backend connection
+
+The home page talks to the [Dundu backend](https://github.com/dundufashion-org/backend) (Express + Postgres, deployed on Railway) through a single environment variable:
+
+```bash
+NEXT_PUBLIC_API_URL=https://<your-railway-domain>   # no trailing slash
+```
+
+- **Local:** copy `.env.example` to `.env.local` and run the backend from `../backend` with `npm run dev` (port 4000).
+- **Vercel:** Project → Settings → Environment Variables → add `NEXT_PUBLIC_API_URL`, then redeploy — the value is inlined at build time.
+
+Without the variable the page renders a setup hint instead of failing, so deploys stay green before the backend exists.
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
